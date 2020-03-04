@@ -1,28 +1,51 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
-const routes = [
+export const constantRoutes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    redirect: "login",
+    hidden: true,
+    meta: {
+      name: "主页"
+    }
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+    path: "/login",
+    name: "Login",
+    hidden: true,
+    meta: {
+      name: "登录"
+    },
+    component: () => import("../views/Login/index.vue")
+  },
+  {
+    path: "/404",
+    name: "404",
+    hidden: true,
+    meta: {
+      name: "404错误"
+    },
+    component: () => import("../views/Error/index.vue")
+  },
+  
+  
 ];
-
-const router = new VueRouter({
-  routes
+const createRouter = () => new VueRouter({
+  scrollBehavior: () => ({y:0}),
+  routes: constantRoutes
 });
+const router = createRouter()
+
+
+// 注销路由
+export function resetRouter() {
+  const newRouter = createRouter()
+  // 清空路由缓存
+  router.matcher = newRouter.matcher 
+}
+
 
 export default router;
