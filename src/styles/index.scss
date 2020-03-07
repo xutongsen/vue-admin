@@ -1,5 +1,9 @@
-@import "./mixin.scss";
-
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+@import './btn.scss';
 
 body {
   height: 100%;
@@ -82,7 +86,14 @@ div:focus {
 }
 
 .clearfix {
-  @include clearfix
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
 }
 
 aside {
@@ -178,4 +189,3 @@ aside {
 .multiselect--active {
   z-index: 1000 !important;
 }
-

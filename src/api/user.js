@@ -18,21 +18,26 @@ export function GetSms(data){
 /**
  * 登录
  */
-export function Login(data){
+export function _login(data){
     return service.request({
         method: "post",
-        url: "/login/",
+        url: "/user/login/",
         data
     })
 }
 
-/**
- * 注册
- */
-export function Register(data){
+
+export function _getInfo(token) {
     return service.request({
-        method: "post",
-        url: "/register/",
-        data
+      url: '/user/info',
+      method: 'get',
+      params: { token }
     })
-}
+  }
+  
+  export function _logout() {
+    return service.request({
+      url: '/user/logout',
+      method: 'post'
+    })
+  }

@@ -1,5 +1,5 @@
 <template>
   <div>
-    4044
+    我是会员特权
   </div>
 </template>

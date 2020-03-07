@@ -4,6 +4,33 @@ export function getToken() {
   return Cookies.get( caching.Token )
 }
 
+
+/**
+ * param 将要转为URL参数字符串的对象
+ * key URL参数字符串的前缀
+ * encode true/false 是否进行URL编码,默认为true
+ * idx ,循环第几次，用&拼接
+ * return URL参数字符串
+ */
+export function urlEncode(param, idx, key, encode) {
+  
+  if(param==null) return '';
+  let paramStr = '';
+  let tmp = typeof (param);
+  if (tmp == 'string' || tmp == 'number' || tmp == 'boolean') {
+    let one_is =idx<3?'?':'&';
+    paramStr += one_is + key + '=' + ((encode==null||encode) ? encodeURIComponent(param) : param);
+  } else {
+    for (var i in param) {
+      var k = key == null ? i : key + (param instanceof Array ? '[' + i + ']' : '.' + i);
+      idx++
+      paramStr += urlEncode(param[i],idx, k, encode);
+    }
+  }
+  return paramStr;
+  
+}
+
 export function setToken(token) {
   return Cookies.set( caching.Token , token)
 }

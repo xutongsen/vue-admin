@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">LOGO</h3>
       </div>
 
       <el-form-item prop="username">
@@ -76,9 +76,9 @@
 <script>
 
 import { validatePass, validateEmail, validateVCode } from '@/utils/validate';
-import { reactive, ref, isRef, toRefs, onMounted, watch } from '@vue/composition-api';
+import { reactive, ref, isRef, toRefs, onMounted, watch, defineComponent } from '@vue/composition-api';
 
-export default {
+export default defineComponent({
   setup(props ,{root, refs}) {
     watch(() => {
       //will print when props.count1 changed
@@ -89,9 +89,8 @@ export default {
       }
     });
   
-
     const validateUsername = (rule, value, callback) => {
-      if (!validateEmail(value)) {
+      if (validateEmail(value)) {
         callback(new Error('请输入正确邮箱错误'))
       } else {
         callback()
@@ -131,7 +130,7 @@ export default {
     // 外部调用方法
     const checkCapslock = (e) => {
       const { key } = e
-      capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
+      capsTooltip.value = key && key.length === 1 && (key >= 'A' && key <= 'Z')
     }
 
     const showPwd = () => {
@@ -145,7 +144,25 @@ export default {
       })
     }
 
-    const handleLogin = () => {
+    const handleLogin = (formName) => {
+
+      refs.loginForm.validate((valid) => {
+        if (valid) {
+          loading.value = true
+
+          root.$store.dispatch('user/login', loginForm)
+          .then(() => {
+            root.$router.push({ path: redirect.value || '/', query: otherQuery })
+            loading.value = false
+          })
+          .catch(() => {
+            loading.value = false
+        })
+          return
+        }
+        console.log('error submit!!')
+        return false
+      })
 
     }
 
@@ -173,7 +190,7 @@ export default {
       handleLogin,
     }
   }
-}
+})
 </script>
 <style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
