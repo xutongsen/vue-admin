@@ -55,9 +55,10 @@ export default defineComponent({
 
     }
     const handleLink = (item) => {
+      // console.log(item,'handleLink')
       const { redirect, path } = item
       if (redirect) {
-        this.$router.push(redirect)
+        root.$router.push(redirect)
         return
       }
 

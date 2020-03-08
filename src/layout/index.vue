@@ -5,24 +5,24 @@
     <div :class="{hasTagsView:needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
-        <!-- <tags-view v-if="needTagsView" /> -->
+        <tags-view v-if="needTagsView" />
       </div>
-      <!-- <app-main />
+      <app-main />
       <right-panel v-if="showSettings">
         <settings />
-      </right-panel> -->
+      </right-panel>
     </div>
   </div>
 </template>
 
 <script>
 import { ref,defineComponent,mixins, computed, onMounted, } from '@vue/composition-api'
-import { Sidebar,Navbar } from './components'
+import { Sidebar, Navbar, TagsView, AppMain, RightPanel, Settings } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 import { mapState } from 'vuex'
 export default defineComponent({
-  components: { Sidebar,Navbar }, 
+  components: { Sidebar, Navbar, TagsView, AppMain, RightPanel,Settings }, 
   setup(props, {root}) {
 
 
@@ -47,6 +47,9 @@ export default defineComponent({
       return root.$store.state.settings.fixedHeader
     })
     
+    const showSettings = computed(() => {
+      return root.$store.state.settings.showSettings
+    })
 
     
     
@@ -73,7 +76,8 @@ export default defineComponent({
       handleClickOutside,
       classObj,
       needTagsView,
-      fixedHeader
+      fixedHeader,
+      showSettings
     }
     
   },

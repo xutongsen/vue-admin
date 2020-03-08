@@ -5,14 +5,20 @@
 
     <div class="right-menu">
       <template v-if="device!=='mobile'">
+
+        <search id="header-search" class="right-menu-item" />
+
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
+
       </template>
 
        <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+
         <div class="avatar-wrapper">
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
+
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
             <el-dropdown-item>Dashboard</el-dropdown-item>
@@ -34,9 +40,10 @@
 import Hamburger from './Hamburger'
 import Breadcrumb from './Breadcrumb'
 import Screenfull from './Screenfull'
+import Search from './HeaderSearch'
 import { components, defineComponent, computed } from '@vue/composition-api'
 export default defineComponent({
-    components: { Hamburger, Breadcrumb, Screenfull },
+    components: { Hamburger, Breadcrumb, Screenfull, Search },
     setup(props, {root}) {
       const sidebar = computed(() => {
         return root.$store.state.app.sidebar

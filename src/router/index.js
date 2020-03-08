@@ -8,6 +8,17 @@ Vue.use(VueRouter);
 
 export const constantRoutes = [
   {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
+  {
     path: "/",
     component: Layout,
     redirect: '/home',
@@ -51,7 +62,7 @@ export const asyncRoutes = [
   {
     path: '/user',
     component: Layout,
-    redirect: '/user/index',
+    redirect: 'noRedirect',
     meta: {
       title: 'User',
       roles: ['admin', 'editor'],
@@ -92,8 +103,81 @@ export const asyncRoutes = [
       {
         path: 'member',
         component: () => import("../views/member/index.vue"),
+        name: 'Member',
         meta: {
           title: 'Marketing Member',
+          roles: ['admin', 'editor'],
+          icon: 'documentation'
+        }
+      },
+      {
+        path: 'member1',
+        component: () => import("../views/member/index.vue"),
+        name: 'Member1',
+        meta: {
+          title: 'Marketing Member1',
+          roles: ['admin', 'editor'],
+          icon: 'documentation'
+        }
+      },
+      {
+        path: 'member2',
+        component: () => import("../views/member/index.vue"),
+        name: 'Member2',
+        meta: {
+          title: 'Marketing Member2',
+          roles: ['admin', 'editor'],
+          icon: 'documentation'
+        }
+      },
+      {
+        path: 'member3',
+        component: () => import("../views/member/index.vue"),
+        name: 'Member3',
+        meta: {
+          title: 'Marketing Member3',
+          roles: ['admin', 'editor'],
+          icon: 'documentation'
+        }
+      },
+      {
+        path: 'member4',
+        component: () => import("../views/member/index.vue"),
+        name: 'Member4',
+        meta: {
+          title: 'Marketing Member4',
+          roles: ['admin', 'editor'],
+          icon: 'documentation'
+        }
+      },
+      {
+        path: 'member5',
+        component: () => import("../views/member/index.vue"),
+        name: 'Member5',
+        meta: {
+          title: 'Marketing Member4',
+          roles: ['admin', 'editor'],
+          icon: 'documentation'
+        }
+      }
+      ,
+      {
+        path: 'member6',
+        component: () => import("../views/member/index.vue"),
+        name: 'Member6',
+        meta: {
+          title: 'Marketing Member4',
+          roles: ['admin', 'editor'],
+          icon: 'documentation'
+        }
+      }
+      ,
+      {
+        path: 'member7',
+        component: () => import("../views/member/index.vue"),
+        name: 'Member7',
+        meta: {
+          title: 'Marketing Member4',
           roles: ['admin', 'editor'],
           icon: 'documentation'
         }

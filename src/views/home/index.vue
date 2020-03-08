@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>sdsdsd</div>
-    <component :is="currentRole" />
+    <!-- <component :is="currentRole" /> -->
   </div>
 </template>
 
@@ -11,33 +11,33 @@ import { reactive, ref, isRef, toRefs, onCreated, components, defineComponent} f
 import adminHome from './admin'
 import salesmanHome from './salesman'
 
-export default defineComponent({
-  name: 'Home',
-  components: { adminHome, salesmanHome }, 
-  setup(props,{root}) {
-    const currentRole = ref('adminHome')
-    onCreated(() => {
+// export default defineComponent({
+//   name: 'Home',
+//   components: { adminHome, salesmanHome }, 
+//   setup(props,{root}) {
+//     const currentRole = ref('adminHome')
+//     onCreated(() => {
     
-    })
-    return {
-      currentRole
-    }
-  }
-  // components: { adminHome, salesmanHome },
-  // data() {
-  //   return {
-  //     currentRole: 'adminHome'
-  //   }
-  // },
-  // computed: {
-  //   ...mapGetters([
-  //     'roles'
-  //   ])
-  // },
-  // created() {
-  //   if (!this.roles.includes('admin')) {
-  //     this.currentRole = 'salesmanHome'
-  //   }
-  // }
-})
+//     })
+//     return {
+//       currentRole
+//     }
+//   }
+//   // components: { adminHome, salesmanHome },
+//   // data() {
+//   //   return {
+//   //     currentRole: 'adminHome'
+//   //   }
+//   // },
+//   // computed: {
+//   //   ...mapGetters([
+//   //     'roles'
+//   //   ])
+//   // },
+//   // created() {
+//   //   if (!this.roles.includes('admin')) {
+//   //     this.currentRole = 'salesmanHome'
+//   //   }
+//   // }
+// })
 </script>

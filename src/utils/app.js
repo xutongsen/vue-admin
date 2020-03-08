@@ -5,6 +5,7 @@ export function getToken() {
 }
 
 
+
 /**
  * param 将要转为URL参数字符串的对象
  * key URL参数字符串的前缀
@@ -106,4 +107,56 @@ export function setStorage(name, type,storageData) {
       break;
   }
   type === 'sessionStorage' ? sessionStorage.setItem(name,formatData) : localStorage.setItem(name,formatData)
+}
+
+
+/**
+ * 判断是否存在class
+ * @param {HTMLElement} elm
+ * @param {string} cls
+ * @returns {boolean}
+ */
+export function hasClass(ele, cls) {
+  return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
+}
+
+
+
+/**
+ * 添加class
+ * @param {HTMLElement} elm
+ * @param {string} cls
+ */
+export function addClass(ele, cls) {
+  if (!hasClass(ele, cls)) ele.className += ' ' + cls
+}
+
+/**
+ * 清除
+ * @param {HTMLElement} elm
+ * @param {string} cls
+ */
+export function removeClass(ele, cls) {
+  if (hasClass(ele, cls)) {
+    const reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+    ele.className = ele.className.replace(reg, ' ')
+  }
+}
+
+export function offsetDistance(el) {
+  let left = el.offsetLeft;
+  let top = el.offsetTop
+  let parent = el.offsetParent
+  console.log(parent)
+  while( parent ) {
+    left += parent.clientLeft
+    left += parent.offsetLeft
+    top += parent.clientTop
+    top += parent.offsetTop
+    parent = parent.offsetParent
+  }
+  return {
+    left,
+    top
+  }
 }
