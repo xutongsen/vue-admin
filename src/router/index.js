@@ -1,5 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error=> error)
+}
 
 /* 页面框架 */
 import Layout from '@/layout'
@@ -86,7 +90,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     meta: {
       title: 'Marketing',
-      roles: ['admin', 'editor'],
+      roles: ['admin'],
       icon: 'documentation'
     },
     children:[
@@ -96,7 +100,7 @@ export const asyncRoutes = [
         name: 'Marketing',
         meta: {
           title: 'MarketingIndex',
-          roles: ['admin', 'editor'], // or you can only set roles in sub nav
+          roles: ['admin'], // or you can only set roles in sub nav
           icon: 'documentation'
         }
       },
@@ -106,82 +110,12 @@ export const asyncRoutes = [
         name: 'Member',
         meta: {
           title: 'Marketing Member',
-          roles: ['admin', 'editor'],
+          roles: ['admin'],
           icon: 'documentation'
         }
       },
-      {
-        path: 'member1',
-        component: () => import("../views/member/index.vue"),
-        name: 'Member1',
-        meta: {
-          title: 'Marketing Member1',
-          roles: ['admin', 'editor'],
-          icon: 'documentation'
-        }
-      },
-      {
-        path: 'member2',
-        component: () => import("../views/member/index.vue"),
-        name: 'Member2',
-        meta: {
-          title: 'Marketing Member2',
-          roles: ['admin', 'editor'],
-          icon: 'documentation'
-        }
-      },
-      {
-        path: 'member3',
-        component: () => import("../views/member/index.vue"),
-        name: 'Member3',
-        meta: {
-          title: 'Marketing Member3',
-          roles: ['admin', 'editor'],
-          icon: 'documentation'
-        }
-      },
-      {
-        path: 'member4',
-        component: () => import("../views/member/index.vue"),
-        name: 'Member4',
-        meta: {
-          title: 'Marketing Member4',
-          roles: ['admin', 'editor'],
-          icon: 'documentation'
-        }
-      },
-      {
-        path: 'member5',
-        component: () => import("../views/member/index.vue"),
-        name: 'Member5',
-        meta: {
-          title: 'Marketing Member4',
-          roles: ['admin', 'editor'],
-          icon: 'documentation'
-        }
-      }
-      ,
-      {
-        path: 'member6',
-        component: () => import("../views/member/index.vue"),
-        name: 'Member6',
-        meta: {
-          title: 'Marketing Member4',
-          roles: ['admin', 'editor'],
-          icon: 'documentation'
-        }
-      }
-      ,
-      {
-        path: 'member7',
-        component: () => import("../views/member/index.vue"),
-        name: 'Member7',
-        meta: {
-          title: 'Marketing Member4',
-          roles: ['admin', 'editor'],
-          icon: 'documentation'
-        }
-      }
+    
+      
     ]
   },
 

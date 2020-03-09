@@ -10,10 +10,10 @@ for (let i = 0; i < count; i++) {
 }
 NameList.push({ name: 'mock-Pan' })
 
-export default [
+module.exports = [
   // username search
   {
-    url: '/vue-element-admin/search/user',
+    url: '/search/user',
     type: 'get',
     response: config => {
       const { name } = config.query
@@ -30,7 +30,7 @@ export default [
 
   // transaction list
   {
-    url: '/vue-element-admin/transaction/list',
+    url: '/transaction/list',
     type: 'get',
     response: _ => {
       return {

@@ -91,6 +91,7 @@ export default defineComponent({
     })
 
     watch(theme, async (val) => {
+      console.log('ss')
       const oldVal = chalk ? theme.value : ORIGINAL_THEME
       if (typeof val !== 'string') return
 
@@ -143,6 +144,8 @@ export default defineComponent({
       emit('change', val)
       
       $message.close()
+    }, {
+      lazy: true
     })
 
 

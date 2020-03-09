@@ -5,7 +5,7 @@
       <div class="handle-button" :style="{'top':buttonTop+'px','background-color':theme}" @click="show=!show">
         <i :class="show?'el-icon-close':'el-icon-setting'" />
       </div>
-      <div class="rightPanel-items">
+      <div class="rightPanel-items"  v-if="show">
         <slot />
       </div>
     </div>
@@ -38,6 +38,7 @@ export default defineComponent({
       const body = document.querySelector('body')
       body.appendChild(elx)
     }
+  
     
     const closeSidebar = (evt) => {
       const parent = evt.target.closest('.rightPanel')

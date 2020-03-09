@@ -11,6 +11,13 @@ import './icons' // icon
 
 import 'normalize.css/normalize.css'
 
+import * as filters from './filters'
+
+// 全局挂载
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
 // 按需加载 感觉都用element ui 了 按需加载就有点累赘
 // import "./plugins/element.js";
 
