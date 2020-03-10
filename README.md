@@ -1,4 +1,7 @@
-# vue-admin
+# vue-admin (3.0 api 初试)
+
+页面样式 借鉴https://github.com/PanJiaChen/vue-element-admin/blob/master/README.zh-CN.md
+
 
 ## Project setup
 ```
