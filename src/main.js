@@ -4,6 +4,8 @@ import router from "./router/index";
 import store from "./store";
 import VueCompositionApi from "@vue/composition-api";
 import Cookies from 'js-cookie'
+import permission from '@/directive/permission'
+permission.install(Vue)
 
 import './permission' // 权限路由
 

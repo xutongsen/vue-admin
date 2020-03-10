@@ -5,7 +5,7 @@
         <line-chart :chart-data="adminData.lineChartData" />
       </el-row>
 
-      <el-row :gutter="32">
+      <el-row v-permission="['admin']" :gutter="32">
         <el-col :xs="24" :sm="24" :lg="8">
           <div class="chart-wrapper">
             <raddar-chart />
