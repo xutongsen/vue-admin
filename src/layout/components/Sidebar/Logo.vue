@@ -23,8 +23,8 @@ export default defineComponent({
     }
   },
   setup(props, {root}) {
-    const title = ref('Vue Element Admin')
-    const logo = ref('https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png')
+    const title = ref('Vue Elemem-UI Admin')
+    const logo = require('../../../assets/logo.png')
     return {
       title,
       logo
@@ -60,8 +60,8 @@ export default defineComponent({
     width: 100%;
 
     & .sidebar-logo {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       vertical-align: middle;
       margin-right: 12px;
     }

@@ -14,7 +14,7 @@
 
 <script>
 import { addClass, removeClass } from '@/utils/app'
-import { defineComponent, props, ref, watch, computed, onMounted, onUnmounted } from "@vue/composition-api"
+import { defineComponent, props, ref, watch, computed, onMounted, onBeforeUnmount } from "@vue/composition-api"
 export default defineComponent({
   props: {
     clickNotClose: {
@@ -71,7 +71,7 @@ export default defineComponent({
       insertToBody()
     })
 
-    onUnmounted(() => {
+    onBeforeUnmount(() => {
       const el = refs.rightPanel
       if ( el ) {
         el.remove()

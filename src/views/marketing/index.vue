@@ -15,39 +15,41 @@
 <script>
 import tabPane from './components/TabPane'
 
-export default {
+import { defineComponent, components, watch, ref } from '@vue/composition-api'
+
+export default defineComponent ({
   name: 'Tab',
   components: { tabPane },
-  data() {
-    return {
-      tabMapOptions: [
-        { label: 'China', key: 'CN' },
-        { label: 'USA', key: 'US' },
-        { label: 'Japan', key: 'JP' },
-        { label: 'Eurozone', key: 'EU' }
-      ],
-      activeName: 'CN',
-      createdTimes: 0
+  setup(props, { root, refs }) {
+    const activeName = ref('CN')
+    const createdTimes  = ref(0)
+    const tabMapOptions = [
+      { label: 'China', key: 'CN' },
+      { label: 'USA', key: 'US' },
+      { label: 'Japan', key: 'JP' },
+      { label: 'Eurozone', key: 'EU' }
+    ]
+    const showCreatedTimes = () => {
+      createdTimes.value += 1
     }
-  },
-  watch: {
-    activeName(val) {
-      this.$router.push(`${this.$route.path}?tab=${val}`)
-    }
-  },
-  created() {
-    // init the default selected tab
-    const tab = this.$route.query.tab
+    const tab = root.$route.query.tab
     if (tab) {
-      this.activeName = tab
+      activeName.value = tab
     }
-  },
-  methods: {
-    showCreatedTimes() {
-      this.createdTimes = this.createdTimes + 1
+
+    watch(activeName,(val) => {
+      root.$router.push(`${root.$route.path}?tab=${val}`)
+    })
+
+    return {
+      activeName,
+      createdTimes,
+      tabMapOptions,
+      showCreatedTimes
     }
   }
-}
+})
+
 </script>
 
 <style scoped>

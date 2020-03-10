@@ -1,7 +1,7 @@
 <template>
-  <el-table :data="list" border fit highlight-current-row style="width: 100%">
+  <el-table :data="tabData.list" border fit highlight-current-row style="width: 100%">
     <el-table-column
-      v-loading="loading"
+      v-loading="tabData.loading"
       align="center"
       label="ID"
       width="65"
@@ -12,38 +12,38 @@
       </template>
     </el-table-column>
 
-    <el-table-column width="180px" align="center" label="Date">
+    <el-table-column width="180px" align="center" label="时间">
       <template slot-scope="scope">
         <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
       </template>
     </el-table-column>
 
-    <el-table-column min-width="300px" label="Title">
+    <el-table-column min-width="300px" label="名称">
       <template slot-scope="{row}">
         <span>{{ row.title }}</span>
         <el-tag>{{ row.type }}</el-tag>
       </template>
     </el-table-column>
 
-    <el-table-column width="110px" align="center" label="Author">
+    <el-table-column width="110px" align="center" label="作者">
       <template slot-scope="scope">
         <span>{{ scope.row.author }}</span>
       </template>
     </el-table-column>
 
-    <el-table-column width="120px" label="Importance">
+    <el-table-column width="120px" label="星级">
       <template slot-scope="scope">
         <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" />
       </template>
     </el-table-column>
 
-    <el-table-column align="center" label="Readings" width="95">
+    <el-table-column align="center" label="统计" width="95">
       <template slot-scope="scope">
         <span>{{ scope.row.pageviews }}</span>
       </template>
     </el-table-column>
 
-    <el-table-column class-name="status-col" label="Status" width="110">
+    <el-table-column class-name="status-col" label="状态" width="110">
       <template slot-scope="{row}">
         <el-tag :type="row.status | statusFilter">
           {{ row.status }}
@@ -56,7 +56,10 @@
 <script>
 import { fetchList } from '@/api/article'
 
-export default {
+
+import { defineComponent, filters, props, reactive } from '@vue/composition-api'
+
+export default defineComponent({
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -73,31 +76,33 @@ export default {
       default: 'CN'
     }
   },
-  data() {
-    return {
+  setup(props, { root, emit }) {
+    let tabData = reactive({
       list: null,
-      listQuery: {
-        page: 1,
-        limit: 5,
-        type: this.type,
-        sort: '+id'
-      },
       loading: false
+    })
+    const listQuery = {
+      page: 1,
+      limit: 5,
+      type: props.type,
+      sort: '+id'
     }
-  },
-  created() {
-    this.getList()
-  },
-  methods: {
-    getList() {
-      this.loading = true
-      this.$emit('create') // for test
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.loading = false
+    const getList = () => {
+      tabData.loading = true
+      emit('create') 
+      fetchList(tabData.listQuery).then(response => {
+        tabData.list = response.data.items
+        tabData.loading = false
       })
     }
+    getList()
+    return {
+      tabData
+    }
+
   }
-}
+  
+})
+
 </script>
 

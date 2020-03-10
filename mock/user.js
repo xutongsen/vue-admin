@@ -12,14 +12,14 @@ const users = {
   'admin-token': {
     roles: ['admin'],
     introduction: 'I am a super administrator',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Super Admin'
+    avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583821543883&di=f7f5244f6da3a1703d8249730ac8b4de&imgtype=0&src=http%3A%2F%2Fimage.biaobaiju.com%2Fuploads%2F20181223%2F18%2F1545560413-PYENlDWsbO.jpg',
+    name: '管理员'
   },
   'editor-token': {
     roles: ['editor'],
     introduction: 'I am an editor',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Normal Editor'
+    avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583821587942&di=c3e4b7aa4a088e63d6576a4cd9510693&imgtype=0&src=http%3A%2F%2Fwww.mangowed.com%2Fuploads%2Fallimg%2F150626%2F1-15062621564Q59.jpg',
+    name: '用户'
   }
 }
 

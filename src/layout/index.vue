@@ -48,6 +48,7 @@ export default defineComponent({
     })
     
     const showSettings = computed(() => {
+      console.log(root.$store.state.settings)
       return root.$store.state.settings.showSettings
     })
 
